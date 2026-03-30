@@ -31,8 +31,6 @@ router.get('/', protect, async (req, res) => {
   res.json(cart || { items: [] });
 });
 
-// @desc    Remove item from cart
-// @route   DELETE /api/cart/:productId
 router.delete('/:productId', protect, async (req, res) => {
   let cart = await Cart.findOne({ user: req.user._id });
 

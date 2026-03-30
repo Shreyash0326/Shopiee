@@ -7,8 +7,7 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
-// @desc    Register a new user
-// @route   POST /api/auth/register
+
 router.post('/register', async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
@@ -47,8 +46,7 @@ router.post('/register', async (req, res, next) => {
   }
 });
 
-// @desc    Auth user & get token
-// @route   POST /api/auth/login
+
 router.post('/login', async (req, res, next) => {
   try {
     const { email, password } = req.body;

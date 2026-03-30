@@ -5,8 +5,7 @@ import Product from '../models/Product.js';
 import { protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
-// @desc    Create new order
-// @route   POST /api/orders
+
 router.post('/', protect, async (req, res) => {
   const { products, totalAmount, shippingAddress } = req.body;
 
@@ -56,8 +55,7 @@ router.post('/', protect, async (req, res) => {
   }
 });
 
-// @desc    Get logged in user orders
-// @route   GET /api/orders/my
+
 router.get('/my', protect, async (req, res) => {
   const orders = await Order.find({ user: req.user._id }).populate('products.product');
   res.json(orders);

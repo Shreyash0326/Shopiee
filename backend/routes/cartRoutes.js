@@ -3,8 +3,6 @@ import Cart from '../models/Cart.js';
 import { protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
-// @desc    Add item to cart
-// @route   POST /api/cart
 router.post('/', protect, async (req, res) => {
   const { productId, quantity } = req.body;
 
@@ -28,9 +26,6 @@ router.post('/', protect, async (req, res) => {
 
   res.status(201).json(cart);
 });
-
-// @desc    Get user cart
-// @route   GET /api/cart
 router.get('/', protect, async (req, res) => {
   const cart = await Cart.findOne({ user: req.user._id }).populate('items.product');
   res.json(cart || { items: [] });

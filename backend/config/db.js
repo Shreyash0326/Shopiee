@@ -21,7 +21,6 @@ const connectDB = async () => {
   }
 };
 
-// Listen for connection errors after initial connection
 mongoose.connection.on('error', (err) => {
   console.error(`Mongoose runtime error: ${err.message}`);
 });

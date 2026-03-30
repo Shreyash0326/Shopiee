@@ -5,8 +5,7 @@ import Product from '../models/Product.js';
 
 const router = express.Router();
 
-// @desc    Get all orders
-// @route   GET /api/admin/orders
+
 router.get('/orders', protect, admin, async (req, res, next) => {
   try {
     const orders = await Order.find({}).populate('user', 'name email').sort('-createdAt');
@@ -16,8 +15,7 @@ router.get('/orders', protect, admin, async (req, res, next) => {
   }
 });
 
-// @desc    Update order status
-// @route   PUT /api/admin/orders/:id/status
+
 router.put('/orders/:id/status', protect, admin, async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id);
@@ -34,8 +32,7 @@ router.put('/orders/:id/status', protect, admin, async (req, res, next) => {
   }
 });
 
-// @desc    Create a product
-// @route   POST /api/admin/products
+
 router.post('/products', protect, admin, async (req, res, next) => {
   try {
     const { name, description, price, stock, image } = req.body;
@@ -46,8 +43,7 @@ router.post('/products', protect, admin, async (req, res, next) => {
   }
 });
 
-// @desc    Create multiple products
-// @route   POST /api/admin/products/bulk
+
 router.post('/products/bulk', protect, admin, async (req, res, next) => {
   try {
     const products = req.body;
@@ -62,8 +58,7 @@ router.post('/products/bulk', protect, admin, async (req, res, next) => {
   }
 });
 
-// @desc    Clear all products
-// @route   DELETE /api/admin/products/clear
+
 router.delete('/products/clear', protect, admin, async (req, res, next) => {
   try {
     await Product.deleteMany({});
@@ -73,8 +68,7 @@ router.delete('/products/clear', protect, admin, async (req, res, next) => {
   }
 });
 
-// @desc    Update a product
-// @route   PUT /api/admin/products/:id
+
 router.put('/products/:id', protect, admin, async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -95,8 +89,7 @@ router.put('/products/:id', protect, admin, async (req, res, next) => {
   }
 });
 
-// @desc    Delete a product
-// @route   DELETE /api/admin/products/:id
+
 router.delete('/products/:id', protect, admin, async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);

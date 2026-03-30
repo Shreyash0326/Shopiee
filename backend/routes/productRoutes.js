@@ -2,15 +2,13 @@ import express from 'express';
 import Product from '../models/Product.js';
 const router = express.Router();
 
-// @desc    Fetch all products
-// @route   GET /api/products
+
 router.get('/', async (req, res) => {
   const products = await Product.find({});
   res.json(products);
 });
 
-// @desc    Create a product
-// @route   POST /api/products
+
 router.post('/', async (req, res) => {
   const { name, description, price, stock, image } = req.body;
 
